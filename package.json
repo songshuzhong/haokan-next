@@ -4,13 +4,11 @@
   "description": "haokan",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "dev:next": "next",
+    "dev": "next",
     "build": "next build",
     "export": "next export",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "prd": "cross-env NODE_ENV=production pm2 start server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=production node ./server/app.js",
+    "prd": "cross-env NODE_ENV=production pm2 start server.js"
   },
   "keywords": [],
   "author": "",
@@ -29,11 +27,11 @@
     "typescript": "latest"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
     "@baidu/haokan-ui": "^1.4.2",
     "@baidu/haokan-util": "^1.4.2",
     "@baidu/launch-hk": "^0.2.8",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-decorators": "^7.1.2",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.16",
@@ -44,8 +42,9 @@
     "babel-plugin-import": "^1.11.0",
     "babel-plugin-styled-components": "^1.10.6",
     "classnames": "^2.2.6",
-    "css-loader": "^0.28.11",
     "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "isomorphic-unfetch": "^2.0.0",
     "less": "^3.8.1",
     "mobx": "^5.5.2",
     "postcss-loader": "^2.1.5",
@@ -53,7 +52,6 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-lazyload": "^2.3.0",
-    "style-loader": "^0.23.1",
-    "isomorphic-unfetch": "^2.0.0"
+    "style-loader": "^0.23.1"
   }
 }

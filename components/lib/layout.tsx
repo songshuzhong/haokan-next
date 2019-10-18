@@ -2,16 +2,25 @@ import React from 'react';
 
 import Header from './header';
 
+interface IMeta {
+    name: string
+    content: string
+}
 interface IProps {
     title?: string
-    keywords?: string
-    description?: string
+    metas?: Array<IMeta>
     scripts?: Array<string>
     styles?: Array<string>
     children: any
 }
 
 export class Layout extends React.Component<IProps, any> {
+    static defaultProps = {
+        metas: [
+            {name: 'keywords', content: ''},
+            {name: 'description', content: ''}
+        ]
+    };
     render() {
         const {children, ...other} = this.props;
 

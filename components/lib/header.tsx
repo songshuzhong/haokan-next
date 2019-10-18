@@ -4,13 +4,14 @@ export default (props) => (
     <div>
         <Head>
             <meta charSet="UTF-8"/>
-            <meta name="description" content={props.description || ''} />
-            <meta name="keywords" content={props.keywords || ''} />
+            {
+                props.metas.map(({name, content}, index) => <meta key={index} name={name} content={content}/>)
+            }
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+            <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
             <title>{props.title || ''}</title>
             <link rel="dns-prefetch" href="//sv.bdstatic.com"/>
             <link rel="dns-prefetch" href="//vv.bdstatic.com"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-            <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
             <link rel="shortcut icon" href="https://vv.bdstatic.com/static/videoui/img/favicon-4_f4b9465.ico" type="image/x-icon"/>
             <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `
                 (function flexible (window, document) {
@@ -22,6 +23,7 @@ export default (props) => (
                     if (document.body) {
                     document.body.style.fontSize = (12 * dpr) + 'px'
                     document.body.style.maxWidth = maxWidth + 'px';
+                    document.body.style.margin = '0 auto';
                 }
                     else {
                     document.addEventListener('DOMContentLoaded', setBodyFontSize)
@@ -63,10 +65,5 @@ export default (props) => (
                 props.styles && props.styles.map((style, index) => <link key={index} rel='stylesheet' type='text/css' href={style} />)
             }
         </Head>
-        <style jsx global>{`
-      body {
-        margin: 0 auto;
-      }
-    `}</style>
     </div>
 )
