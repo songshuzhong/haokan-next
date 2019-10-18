@@ -2,10 +2,11 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const next = require('next');
 const mobxReact = require('mobx-react');
-
+const { parse } = require('url');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
+const contextPath = 'haokan-next/';
 let port = dev ? 4324 : 7005;
 
 const proxyOptions = {
@@ -32,7 +33,9 @@ app.prepare()
         }
 
         router.get('*', async (ctx) => {
-            await handle(ctx.req, ctx.res)
+            let url = ctx.req.url;
+            url = url.replace(contextPath, '');
+            await handle(ctx.req, ctx.res, parse(url, true))
         });
 
         server.use(async (ctx, over) => {

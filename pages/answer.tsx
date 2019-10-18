@@ -82,14 +82,14 @@ export default class Answer extends React.Component<any, any> {
             <div className='bjh-video-list'>
                 {
                     card.author_video.video_list.map((video, index) =>
-                        <div className='list' key={index}>
+                        <a className='list' key={index} href={video.url}>
                             <div className='cover' style={{backgroundImage: `url(${video.conver_src})`}}>
                                 <div className='prior'>{video.publish_time}</div>
                                 |
                                 <div className='duration'>{video.duration}</div>
                             </div>
                             <h3 className='title1 ellipsisLn'>{video.title}</h3>
-                        </div>
+                        </a>
                     )
                 }
             </div>
@@ -163,7 +163,7 @@ export default class Answer extends React.Component<any, any> {
                     <p>{card.resources[0].update}</p>
                     <p>{card.actors}</p>
                     <p>{card.resources[0].siteName}</p>
-                    <div className='watch'>立即观看</div>
+                    <a className='watch' href={card.resources[0].firstVideoUrl}>立即观看</a>
                 </div>
             </div>
             <ul className='footer'>

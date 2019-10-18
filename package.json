@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "export": "next export",
+    "build": "cross-env NODE_ENV=production next build",
     "start": "cross-env NODE_ENV=production node ./server/app.js",
+    "export": "next export",
     "prd": "cross-env NODE_ENV=production pm2 start server.js"
   },
   "keywords": [],
@@ -24,7 +24,8 @@
     "mobx-react": "^5.3.6",
     "next": "latest",
     "ts-node": "^7.0.1",
-    "typescript": "latest"
+    "typescript": "latest",
+    "url-parse": "^1.4.7"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -47,11 +48,14 @@
     "isomorphic-unfetch": "^2.0.0",
     "less": "^3.8.1",
     "mobx": "^5.5.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^2.1.5",
     "postcss-plugin-px2rem": "^0.8.1",
+    "postcss-safe-parser": "^4.0.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-lazyload": "^2.3.0",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.4"
   }
 }
