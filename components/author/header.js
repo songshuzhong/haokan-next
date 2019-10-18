@@ -14,7 +14,7 @@ const Header = ({author}) => <Fragment>
                 {author.is_subscribe ?
                     '已关注' :
                     <Fragment>
-                        <img src='/static/icon-plus.png' />&nbsp;关注
+                        <img src='/static/img/icon-plus.png' />&nbsp;关注
                     </Fragment>
                 }
             </div>
@@ -23,7 +23,7 @@ const Header = ({author}) => <Fragment>
             {
                 author.baidu_authentication ?
                     <div>
-                        <img src='/static/certification.png' />
+                        <img src='/static/img/certification.png' />
                         <span>
                                     {
                                         author.baidu_authentication.length > 25
@@ -36,7 +36,7 @@ const Header = ({author}) => <Fragment>
             {
                 author.wishes ?
                     <div>
-                        <img src='/static/author.png' />
+                        <img src='/static/img/author.png' />
                         <span>{author.wishes}</span>
                     </div> : null
             }

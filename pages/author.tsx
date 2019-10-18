@@ -115,7 +115,7 @@ export default class Author extends React.Component<any, any> {
     createMiniItems = ({content}, i) =>
         <div key={i} className='mini-item' style={{backgroundImage: `url(${content['poster_exquisite']})`}}>
             <div className='watch'>
-                <img src='/static/minivideo-eyes.png'/>
+                <img src='/static/img/minivideo-eyes.png'/>
                 <span>&nbsp;{content['playcnt']['playcntText']}</span>
             </div>
         </div>;
