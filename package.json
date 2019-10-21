@@ -1,17 +1,16 @@
 {
   "name": "haokan-next",
   "version": "1.0.0",
-  "description": "haokan",
+  "description": "haokan-next! An project build by React and Next",
   "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "cross-env NODE_ENV=production next build",
     "start": "cross-env NODE_ENV=production node ./server/app.js",
-    "export": "next export",
-    "prd": "cross-env NODE_ENV=production pm2 start server.js"
+    "prd": "cross-env NODE_ENV=production pm2 start app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["web", "haokan", "react", "nextjs"],
+  "author": "songshuzhong",
   "license": "ISC",
   "dependencies": {
     "@types/next": "^8.0.5",

@@ -6,7 +6,7 @@ const Header = ({author}) => <Fragment>
             <img className='photo' src={author.avatar} />
             {
                 author.vip && author.vip > 0 && author.vip < 4
-                    ? <img className='fork' src={`/static/icon-v-${author.vip}.png`} />
+                    ? <img className='fork' src={`/static/img/icon-v-${author.vip}.png`} />
                     : ''
             }
             <div className='nick'>{author.name}</div>

@@ -1,56 +1,42 @@
+/**
+ *@file
+ *@Date 2019/07/01
+ *@author sshuzhong
+ *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@desc
+ *@link
+*/
 const Koa = require('koa');
 const Router = require('koa-router');
-const next = require('next');
-const mobxReact = require('mobx-react');
-const { parse } = require('url');
+const withNext = require('./withNext');
+const withProxy = require('./withProxy');
+const withConfig = require('./withConfig');
+
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({dev});
-const handle = app.getRequestHandler();
-const contextPath = 'haokan-next/';
-let port = dev ? 4324 : 7005;
 
-const proxyOptions = {
-    '/haokan': {
-        target: 'http://test.rmb.rmb.otp.baidu.com',
-        changeOrigin: true,
-        logs: true
-    }
-};
+const server = new Koa();
+const router = new Router();
 
-mobxReact.useStaticRendering(true);
+if (dev) {
+    // 配置接口代理
+    withProxy(server);
+}
 
-app.prepare()
-    .then(() => {
-        const server = new Koa();
-        const router = new Router();
+// 配置koa全局参数
+withConfig(server);
 
-        if (dev && proxyOptions) {
-            const proxy = require('koa-proxies');
+withNext(server, router);
 
-            Object.keys(proxyOptions).forEach(function (context) {
-                server.use(proxy(context, proxyOptions[context]))
-            });
-        }
+server.use(async (ctx, next) => {
+    ctx.res.statusCode = 200;
+    await next();
+});
 
-        router.get('*', async (ctx) => {
-            let url = ctx.req.url;
-            url = url.replace(contextPath, '');
-            await handle(ctx.req, ctx.res, parse(url, true))
-        });
+server.use(router.routes());
 
-        server.use(async (ctx, over) => {
-            ctx.res.statusCode = 200;
-            await over();
-        });
+const port = server.hkConfig.serverPort || 8080;
 
-        server.use(router.routes());
-
-        server.listen(port, (err) => {
-            if (err) throw err;
-            console.log('> Ready on http://localhost ' + port)
-        });
-    })
-    .catch((ex) => {
-        console.error(ex.stack);
-        process.exit(1);
-    });
+server.listen(port, (err) => {
+    if (err) throw err;
+    console.log(`🚀 Server ready at http://localhost:${port}`);
+});

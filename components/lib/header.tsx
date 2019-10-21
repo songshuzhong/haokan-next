@@ -1,5 +1,12 @@
+/**
+ *@file
+ *@Date 2019/07/01
+ *@author sshuzhong
+ *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@desc
+ *@link
+*/
 import Head from 'next/head';
-
 export default (props) => (
     <div>
         <Head>
@@ -63,6 +70,12 @@ export default (props) => (
             }
             {
                 props.styles && props.styles.map((style, index) => <link key={index} rel='stylesheet' type='text/css' href={style} />)
+            }
+            {
+                process.env.NODE_ENV !== 'production' && (<script type='text/javascript' src='http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.3.0' />)
+            }
+            {
+                process.env.NODE_ENV !== 'production' && <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.vConsole = new window.VConsole();` }} />
             }
         </Head>
     </div>

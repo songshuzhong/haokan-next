@@ -1,0 +1,14 @@
+/**
+ *@file
+ *@Date 2019/07/01
+ *@author sshuzhong
+ *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@desc
+ *@link
+*/
+const path = require('path');
+
+module.exports = withConfig = (app) => {
+    const configPath = '../deploy/config.json';
+    app.hkConfig = require(path.resolve(__dirname, configPath)) || {};
+}

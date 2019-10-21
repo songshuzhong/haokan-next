@@ -1,8 +1,8 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
-import { inject, observer } from 'mobx-react';
-import { Layout } from '../components/lib/layout';
-import { Store } from '../stores/about';
+import {inject, observer} from 'mobx-react';
+import {Layout} from '../components/lib/layout';
+import {Store} from '../stores/about';
 
 @inject('store')
 @observer

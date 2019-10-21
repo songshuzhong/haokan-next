@@ -1,3 +1,4 @@
+const path = require('path');
 const withLess = require('@zeit/next-less');
 const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -5,11 +6,16 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const dev = process.env.NODE_ENV !== 'production';
 
 if (typeof require !== 'undefined') {
-    require.extensions['.less'] = file => {};
+    require.extensions['.css'] = () => {};
+    require.extensions['.less'] = () => {};
 }
+
 module.exports = withLess(
     {
         webpack(config, {buildld, dev, isServer, defaultLoaders}) {
+            config.resolve.alias.components = path.join(__dirname, './src/components');
+            config.resolve.alias.components = path.join(__dirname, './src/styles');
+            config.resolve.alias.components = path.join(__dirname, './src/stores');
             config.optimization = {
                 minimize: !dev,
                 minimizer: [
