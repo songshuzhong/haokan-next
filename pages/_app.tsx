@@ -9,7 +9,7 @@
 import React from 'react';
 import App from 'next/app';
 import {Provider} from 'mobx-react';
-import withMobxStore from '../components/lib/with-mobx-app';
+import withMobxStore from '../src/components/lib/with-mobx-app';
 
 class Application extends App<any, any> {
     static async getInitialProps(context) {

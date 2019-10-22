@@ -10,11 +10,11 @@ import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import {inject, observer} from 'mobx-react';
 
-import {Layout} from '../components/lib/layout';
-import Header from '../components/author/header';
-import {Store} from '../stores/author';
+import {Layout} from '../src/components/lib/layout';
+import Header from '../src/components/author/header';
+import {Store} from '../src/stores/author';
 
-import '../styles/author.less';
+import '../src/styles/author.less';
 
 @inject('store')
 @observer

@@ -9,7 +9,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import fetch from 'isomorphic-unfetch';
-import '../styles/download.less';
+import '../src/styles/download.less';
 
 @inject('store')
 @observer

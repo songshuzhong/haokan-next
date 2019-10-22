@@ -6,7 +6,7 @@
  *@desc
  *@link
     */
-const { parse } = require('url');
+const {parse} = require('url');
 const next = require('next');
 const mobxReact = require('mobx-react');
 

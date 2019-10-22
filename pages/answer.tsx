@@ -10,9 +10,9 @@ import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import {inject, observer} from 'mobx-react';
 
-import {Layout} from '../components/lib/layout';
+import {Layout} from '../src/components/lib/layout';
 
-import '../styles/answer.less';
+import '../src/styles/answer.less';
 
 @inject('store')
 @observer

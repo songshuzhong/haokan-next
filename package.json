@@ -9,7 +9,12 @@
     "start": "cross-env NODE_ENV=production node ./server/app.js",
     "prd": "cross-env NODE_ENV=production pm2 start app.js"
   },
-  "keywords": ["web", "haokan", "react", "nextjs"],
+  "keywords": [
+    "web",
+    "haokan",
+    "react",
+    "nextjs"
+  ],
   "author": "songshuzhong",
   "license": "ISC",
   "dependencies": {

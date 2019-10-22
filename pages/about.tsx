@@ -1,7 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
-import {Layout} from '../components/lib/layout';
-import {Store} from '../stores/about';
+import {Layout} from '../src/components/lib/layout';
+import {Store} from '../src/stores/about';
 
 @inject('store')
 @observer
