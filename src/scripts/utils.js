@@ -1,4 +1,4 @@
-const debounce = (fn, time) => {
+export const debounce = (fn, time) => {
     let timer = null;
 
     return function () {
@@ -9,7 +9,7 @@ const debounce = (fn, time) => {
     }
 };
 
-const throttle = (fn, time) => {
+export const throttle = (fn, time) => {
     let canrun = true;
 
     return function() {
@@ -23,7 +23,7 @@ const throttle = (fn, time) => {
     }
 };
 
-const deepFirstSearch = (node, list = []) => {
+export const deepFirstSearch = (node, list = []) => {
     if (node) {
         list.push(node);
         const children = node.children;
@@ -36,7 +36,7 @@ const deepFirstSearch = (node, list = []) => {
     return list;
 };
 
-const widthFirstSearch = (node) => {
+export const widthFirstSearch = (node) => {
     const stack = [];
     const list = [];
 
@@ -57,25 +57,25 @@ const widthFirstSearch = (node) => {
     return list;
 };
 
-const fibonacii = (n) => {
+export const fibonacii = (n) => {
     if (n === 0 || n === 1) return 1;
 
     return this.fibonacii(n - 1) + this.fibonacii(n -2);
 };
 
-const fibonaciiPlus = (n, ac1 = 1, ac2 = 1) => {
+export const fibonaciiPlus = (n, ac1 = 1, ac2 = 1) => {
     if (n <= 1) return ac2;
 
     return this.fibonaciiPlus(n - 1, ac2, ac1 + ac2)
 };
 
-const factorial = (n, total) => {
+export const factorial = (n, total) => {
     if (n === 1) return total;
 
     return this.factorial(n - 1, n * total);
 };
 
-const _async = generator => {
+export const _async = generator => {
     const iterator = generator();
 
     const handle = generatorResult => {
@@ -86,7 +86,7 @@ const _async = generator => {
         if (generatorValue instanceof Promise) {
             generatorValue
                 .then(result => handle(iterator.next(result)))
-                .catch(iterator.throw(e));
+                .catch(e => iterator.throw(e));
         }
     };
 
@@ -97,7 +97,7 @@ const _async = generator => {
     };
 };
 
-const _bind = function(context) {
+export const _bind = function(context) {
     const self = this;
     const args = Array.prototype.splice.call(arguments, 1);
 
@@ -107,7 +107,7 @@ const _bind = function(context) {
     }
 }
 
-class _Promise {
+export class _Promise {
     constructor(run) {
         this.resolveList = [];
         this.status = 'pending';
@@ -145,11 +145,11 @@ class _Promise {
     }
 }
 
-class Queue {
-    constructor() {
+export class Queue {
+    constructor(maxSize) {
         this.queue = [];
         this.tasks = [];
-        this.maxSize = 0;
+        this.maxSize = maxSize;
         this.activeCount = 0;
     }
 
@@ -157,7 +157,7 @@ class Queue {
         this.tasks.push(new Promise((resolve, reject) => {
             const task = () => {
                 this.activeCount++;
-                fn
+                fn()
                     .then(data => resolve(data))
                     .then(() => this.next())
                     .catch(err => reject(err));

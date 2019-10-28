@@ -2,7 +2,7 @@ import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {Layout} from '../src/components/lib/layout';
 import {Store} from '../src/stores/about';
-import {Queue} from '../src/components/lib/queue';
+import {Queue} from '../src/scripts/utils';
 
 @inject('store')
 @observer
