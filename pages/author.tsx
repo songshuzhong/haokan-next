@@ -12,6 +12,7 @@ import {inject, observer} from 'mobx-react';
 
 import {Layout} from '../src/components/lib/layout';
 import Header from '../src/components/author/header';
+import LazyImg from '../src/components/author/lazyImg';
 import {Store} from '../src/stores/author';
 
 import '../src/styles/author.less';
@@ -101,7 +102,7 @@ export default class Author extends React.Component<any, any> {
                     content['title']
                 }
             </div>
-            <img className='video' src={content['cover_src']}/>
+            <LazyImg className='video' src={content['cover_src']}/>
             <div className='duration'>
                 <span>{content['duration']}</span>
                 <div/>
