@@ -57,6 +57,24 @@ const widthFirstSearch = (node) => {
     return list;
 };
 
+const fibonacii = (n) => {
+    if (n === 0 || n === 1) return 1;
+
+    return this.fibonacii(n - 1) + this.fibonacii(n -2);
+};
+
+const fibonaciiPlus = (n, ac1 = 1, ac2 = 1) => {
+    if (n <= 1) return ac2;
+
+    return this.fibonaciiPlus(n - 1, ac2, ac1 + ac2)
+};
+
+const factorial = (n, total) => {
+    if (n === 1) return total;
+
+    return this.factorial(n - 1, n * total);
+};
+
 const _async = generator => {
     const iterator = generator();
 
@@ -163,7 +181,6 @@ class Queue {
     all = () => Promise.all(this.tasks);
 }
 
-
 _async(function *() {
     try {
         const a = yield Promise.resolve(1);
@@ -175,4 +192,3 @@ _async(function *() {
         console.log(e);
     }
 });
-
