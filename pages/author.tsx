@@ -142,10 +142,10 @@ export default class Author extends React.Component<any, any> {
         </div>;
 
     render() {
-        const {author, header, currentTab, videoList, videoMiniList, videoAlbum} = this.props.store;
+        const {author, currentTab, videoList, videoMiniList, videoAlbum} = this.props.store;
 
         return (
-            <Layout {...header}>
+            <Layout title={author ? author.name : ''}>
                 <Header author={author}/>
                 <ul className='hk-tabs-wrapper'>
                     <li className={currentTab == 0 ? 'active' : ''} onClick={() => this.onTabsChange(0)}>

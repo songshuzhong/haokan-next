@@ -2,31 +2,33 @@ import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {Layout} from '../src/components/lib/layout';
 import {Store} from '../src/stores/about';
-import {Queue} from '../src/scripts/utils';
 
 @inject('store')
 @observer
 export default class About extends React.Component<any, any> {
     static Store = Store;
-    componentDidMount() {
-        const queue = new Queue(3);
-
-        ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].forEach((i) => queue.push(() => this.job(i)));
-
-        queue.all()
-            .then((results) => this.props.store.results = results)
-            .then(() => this.props.store.status = 'job finished!');
+    constructor(props) {
+        super(props);
+        this.state = {
+            array: [1, 2, 2, 4, 6, 3, 6, 8, 1]
+        };
     }
 
-    job (name) {
-        const text = `job ${name}`;
-        this.props.store.status = `started ${text}`;
-        return new Promise(function (resolve) {
-            setTimeout(() => {
-                console.log(text, 'finished');
-                resolve(text)
-            }, 2000)
-        })
+    unique = () => {
+        const array = this.state.array.sort((a, b) => a - b);
+        let index = 0;
+        let pre = array[0];
+
+        for (let i = 0; i < array.length; i++) {
+            if (pre != array[i]) {
+                index++;
+                pre = array[i];
+            }
+
+            array[index] = array[i];
+        }
+
+        this.setState({array: array.slice(0, index + 1)});
     }
 
     render() {
@@ -38,6 +40,7 @@ export default class About extends React.Component<any, any> {
                 <h2>{this.props.store.lastUpdate}</h2>
                 <h1>{this.props.store.status}</h1>
                 <div>{JSON.stringify(this.props.store.results)}</div>
+                <h1>{this.state.array}</h1>
                 <a href='/haokan-next/author?app_id=1619184918983136'>link to author.</a>
             </Layout>
         );

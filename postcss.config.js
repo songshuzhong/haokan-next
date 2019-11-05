@@ -11,11 +11,8 @@ module.exports = () => {
             ]}),
         require('postcss-plugin-px2rem')({
             rootValue: {
-                px: 124.2,
-                rpx: 248.4
-            },
-            unitPrecision: 3,
-            minPixelValue: 2,
+                px: 124.2
+            }
         })
     ];
     return { plugins };

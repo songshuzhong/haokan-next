@@ -1,4 +1,4 @@
-export const debounce = (fn, time) => {
+const debounce = (fn, time) => {
     let timer = null;
 
     return function () {
@@ -9,7 +9,7 @@ export const debounce = (fn, time) => {
     }
 };
 
-export const throttle = (fn, time) => {
+const throttle = (fn, time) => {
     let canrun = true;
 
     return function() {
@@ -18,12 +18,13 @@ export const throttle = (fn, time) => {
 
         setTimeout(() => {
             fn.apply(this, arguments);
+            console.log(arguments);
             canrun = true;
         }, time);
     }
 };
 
-export const deepFirstSearch = (node, list = []) => {
+const deepFirstSearch = (node, list = []) => {
     if (node) {
         list.push(node);
         const children = node.children;
@@ -36,7 +37,7 @@ export const deepFirstSearch = (node, list = []) => {
     return list;
 };
 
-export const widthFirstSearch = (node) => {
+const widthFirstSearch = (node) => {
     const stack = [];
     const list = [];
 
@@ -57,25 +58,25 @@ export const widthFirstSearch = (node) => {
     return list;
 };
 
-export const fibonacii = (n) => {
+const fibonacii = (n) => {
     if (n === 0 || n === 1) return 1;
 
     return this.fibonacii(n - 1) + this.fibonacii(n -2);
 };
 
-export const fibonaciiPlus = (n, ac1 = 1, ac2 = 1) => {
+const fibonaciiPlus = (n, ac1 = 1, ac2 = 1) => {
     if (n <= 1) return ac2;
 
     return this.fibonaciiPlus(n - 1, ac2, ac1 + ac2)
 };
 
-export const factorial = (n, total) => {
+const factorial = (n, total) => {
     if (n === 1) return total;
 
     return this.factorial(n - 1, n * total);
 };
 
-export const _async = generator => {
+const _async = generator => {
     const iterator = generator();
 
     const handle = generatorResult => {
@@ -97,7 +98,7 @@ export const _async = generator => {
     };
 };
 
-export const _bind = function(context) {
+const _bind = function(context) {
     const self = this;
     const args = Array.prototype.splice.call(arguments, 1);
 
@@ -105,9 +106,17 @@ export const _bind = function(context) {
         const bindArgs = Array.prototype.splice.call(arguments);
         self.apply(context, args.concat(bindArgs));
     }
-}
+};
 
-export class _Promise {
+const _new = function(fn, args) {
+    const obj = Object.create(fn.prototype);
+
+    const ret = fn.appli(obj, args);
+
+    return ret instanceof Object ? ret : obj;
+};
+
+class _Promise {
     constructor(run) {
         this.resolveList = [];
         this.status = 'pending';
@@ -145,7 +154,7 @@ export class _Promise {
     }
 }
 
-export class Queue {
+class Queue {
     constructor(maxSize) {
         this.queue = [];
         this.tasks = [];
@@ -178,7 +187,9 @@ export class Queue {
         }
     }
 
-    all = () => Promise.all(this.tasks);
+    all() {
+        Promise.all(this.tasks);
+    }
 }
 
 _async(function *() {
@@ -192,3 +203,17 @@ _async(function *() {
         console.log(e);
     }
 });
+
+function _Class(name) {
+    if (new.target === _Class) {
+        this.name = name;
+        this.id = ++_Class.id;
+    } else {
+        return new _Class(name);
+    }
+}
+
+_Class.id = 0;
+
+
+

@@ -1,0 +1,62 @@
+body {
+  margin: 0 auto;
+  .skeleton {
+    padding: 10px;
+    .header {
+      width: 100px;
+      height: 100px;
+      float: left;
+      background: rgb(194, 207, 214);
+    }
+    .body {
+      margin-left: 110px;
+      .title {
+        width: 500px;
+        height: 60px;
+        background: rgb(194, 207, 214);
+      }
+      .content {
+        width: 500px;
+        height: 30px;
+        margin-top: 10px;
+        background: rgb(194, 207, 214);
+      }
+    }
+  }
+  .skeleton-stripes {
+    .header,
+    .body .title, .body .content {
+      background: rgb(194, 207, 214);
+      background-size: 20rem 20rem;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, .15) 25%, transparent 25%);
+      animation: skeleton-stripes 1s linear infinite;
+    }
+    @keyframes skeleton-stripes {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 20rem 0;
+        }
+    }
+  }
+  .skeleton-strech {
+    .body .title {
+      transform-origin: left;
+      animation: skeleton-strech 1s linear infinite alternate;
+    }
+    .body .content {
+      transform-origin: left;
+      animation: skeleton-strech 1s -.3s linear infinite alternate;
+    }
+    @keyframes skeleton-strech {
+      from {
+        transform: scaleX(1);
+      }
+      to {
+        transform: scaleX(.3);
+      }
+    }
+  }
+}
+

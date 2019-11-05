@@ -27,22 +27,21 @@ export default (props) => (
                     var maxWidth = 828;
                     // adjust body font size
                     function setBodyFontSize () {
-                    if (document.body) {
-                    document.body.style.fontSize = (12 * dpr) + 'px'
-                    document.body.style.maxWidth = maxWidth + 'px';
-                    document.body.style.margin = '0 auto';
-                }
-                    else {
-                    document.addEventListener('DOMContentLoaded', setBodyFontSize)
-                }
-                }
+                        if (document.body) {
+                            document.body.style.maxWidth = maxWidth + 'px';
+                            document.body.style.margin = '0 auto';
+                        }
+                        else {
+                            document.addEventListener('DOMContentLoaded', setBodyFontSize)
+                        }
+                    }
                     setBodyFontSize();
                     // set 1rem = viewWidth / 10
                     function setRemUnit () {
-                    var clientWidth = docEl.clientWidth > maxWidth ? maxWidth : docEl.clientWidth;
-                    var rem = clientWidth / 10
-                    docEl.style.fontSize = rem + 'px'
-                }
+                        var clientWidth = docEl.clientWidth > maxWidth ? maxWidth : docEl.clientWidth;
+                        var rem = clientWidth / 10;
+                        docEl.style.fontSize = rem + 'px'
+                    }
                     setRemUnit()
                     // reset rem unit on page resize
                     window.addEventListener('resize', setRemUnit)
@@ -51,18 +50,6 @@ export default (props) => (
                     setRemUnit()
                 }
                 })
-                    // detect 0.5px supports
-                    if (dpr >= 2) {
-                    var fakeBody = document.createElement('body')
-                    var testElement = document.createElement('div')
-                    testElement.style.border = '.5px solid transparent'
-                    fakeBody.appendChild(testElement)
-                    docEl.appendChild(fakeBody)
-                    if (testElement.offsetHeight === 1) {
-                    docEl.classList.add('hairlines')
-                }
-                    docEl.removeChild(fakeBody)
-                }
                 }(window, document))
                ` }} />
             {
@@ -72,10 +59,10 @@ export default (props) => (
                 props.styles && props.styles.map((style, index) => <link key={index} rel='stylesheet' type='text/css' href={style} />)
             }
             {
-                process.env.NODE_ENV !== 'production' && (<script type='text/javascript' src='http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.3.0' />)
+                // process.env.NODE_ENV !== 'production' && (<script type='text/javascript' src='http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.3.0' />)
             }
             {
-                process.env.NODE_ENV !== 'production' && <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.vConsole = new window.VConsole();` }} />
+                // process.env.NODE_ENV !== 'production' && <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.vConsole = new window.VConsole();` }} />
             }
         </Head>
     </div>

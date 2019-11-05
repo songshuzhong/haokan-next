@@ -29,6 +29,7 @@ export class Layout extends React.Component<IProps, any> {
             {name: 'description', content: ''}
         ]
     };
+
     render() {
         const {children, ...other} = this.props;
 
