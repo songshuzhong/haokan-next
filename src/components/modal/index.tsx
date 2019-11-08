@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Renderer} from '../../scripts/decorator';
 import "./index.less";
 
 interface IProps {
@@ -15,6 +15,8 @@ interface IState {
     closeText: string;
 }
 
+// @ts-ignore
+@Renderer({test: 'modal'})
 class Modal extends React.Component<IProps, IState> {
     private ref = null;
     constructor(props) {

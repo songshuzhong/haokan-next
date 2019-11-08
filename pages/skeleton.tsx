@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {Layout} from '../src/components/lib/layout';
-
 import '../src/styles/skeleton.less';
 
 export default class Skeleton extends React.Component<any, any> {

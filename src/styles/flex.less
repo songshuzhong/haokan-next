@@ -1,0 +1,23 @@
+#container {
+    height: 800px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    background-color: #ffb40f;
+    div {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+        margin: 20px;
+        box-sizing: border-box;
+        background-color: antiquewhite;
+        &:last-child {
+            flex-shrink: .2;
+            order: -1;
+            flex-basis: 500px;
+            background-color: #02bbff;
+        }
+    }
+}

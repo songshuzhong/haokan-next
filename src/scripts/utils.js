@@ -111,7 +111,7 @@ const _bind = function(context) {
 const _new = function(fn, args) {
     const obj = Object.create(fn.prototype);
 
-    const ret = fn.appli(obj, args);
+    const ret = fn.apply(obj, args);
 
     return ret instanceof Object ? ret : obj;
 };
@@ -215,5 +215,38 @@ function _Class(name) {
 
 _Class.id = 0;
 
+Promise.prototype.all = function(promises) {
+    let index = 0;
+    const resolves = [];
+
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < promises.length; i++) {
+            (function(i) {
+                Promise.resolve(promises[i].then(value => {
+                    index++;
+                    resolves.push(value);
+                    if (index === promises.length) {
+                        resolve(resolves);
+                    }
+                }, reason => {
+                    reject(reason);
+                }))
+            })(i);
+        }
+    });
+}
+
+[1, 2].filter(item => i > 1);
+
+[].__proto__._filter = function(fn) {
+    let res = [];
+
+    this.reduce(function(total, value, index, array) {
+        const flag = fn.call(this, value);
+        if (flag) {
+            res.push(value);
+        }
+    }, null);
+}
 
 
