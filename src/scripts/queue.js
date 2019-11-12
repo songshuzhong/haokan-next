@@ -1,34 +1,34 @@
+// 先进先出，像排队
 class Queue {
-    constructor(maxSize) {
-        this.tasks = [];
-        this.queue = [];
-        this.maxSize = maxSize;
-        this.activeCount = 0;
+    constructor() {
+        this.items = [];
     }
 
-    add(fn) {
-        this.tasks.push(new Promise((resolve, reject) => {
-            const task = () => {
-                this.activeCount++;
-                fn()
-                    .then(data => resolve(data))
-                    .then(() => this.next())
-                    .catch(error => reject(error));
-            };
-            if (this.activeCount < this.maxSize) {
-                task();
-            } else {
-                this.queue.push(task);
-            }
-        }));
+    enqueue(item) {
+        this.items.push(item);
     }
 
-    next() {
-        if (this.activeCount > 1) {
-            this.activeCount--;
-            this.queue.shift()();
-        }
+    dequeue() {
+        return this.items.shift();
     }
 
-    all = () => Promise.all(this.tasks);
+    front() {
+        return this.items[0];
+    }
+
+    clear() {
+        this.items = [];
+    }
+
+    get size() {
+        return this.items.length;
+    }
+
+    get isEmpty() {
+        return !this.items.length;
+    }
+
+    print() {
+        console.log(this.items.toString());
+    }
 }
