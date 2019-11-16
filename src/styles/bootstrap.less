@@ -1,0 +1,52 @@
+@media (min-width : 768PX) {
+   .container {
+       width: 768PX;
+   }
+}
+@media (min-width: 992PX) {
+    .container {
+        width: 992PX;
+    }
+}
+@media (min-width: 1170PX) {
+    .container {
+        width: 1170PX;
+    }
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.container {
+    padding: 0 15PX;
+    margin: auto;
+}
+.row {
+    margin: 0 -15PX;
+}
+.col-md-12, .col-md-6, .col-md-4, .col-md-3 {
+    float: left;
+    position: relative;
+    padding: 0 15PX;
+    min-height: 1PX;
+}
+.col-md-12 {
+    width: 100%;
+}
+.col-md-6 {
+    width: 50%;
+}
+.col-md-3 {
+    width: 25%;
+}
+.col-md-4 {
+    width: 33.33%;
+}
+.row div {
+    height: 60PX;
+    margin: -1PX;
+    border: 1PX solid grey;
+    text-align: center;
+    line-height: 60PX;
+}
