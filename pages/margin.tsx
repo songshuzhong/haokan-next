@@ -8,6 +8,7 @@ const Margin = () => {
         <Layout>
             <div className='div1'>1</div>
             <div className='div2'>2</div>
+            <div className='center' />
         </Layout>
     );
 };
