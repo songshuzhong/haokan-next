@@ -1,0 +1,45 @@
+#__next {
+    div {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        background-color: #928901;
+    }
+    .animation {
+        left: 0;
+        position: absolute;
+        animation: move-animation2 5s linear 0s infinite alternate;
+    }
+    .js {
+        top: 250px;
+        position: absolute;
+    }
+    .js2 {
+        top: 500px;
+        position: absolute;
+    }
+    @keyframes move-animation1 {
+        0% {
+            left: 0;
+        }
+        100% {
+            left: calc(100% - 300px);
+        }
+    }
+
+    @keyframes move-animation2 {
+        0% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(1250px);
+        }
+        100% {
+            transform: translateX(2500px);
+        }
+    }
+
+}
