@@ -16,7 +16,7 @@ const withApiObserver = require('./withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
 
 const server = new Koa();
-const router = new Router({prefix: '/haokan-next'});
+const router = new Router();
 
 if (dev) {
     // 配置接口代理
@@ -25,9 +25,9 @@ if (dev) {
 // 配置koa全局参数
 withConfig(server);
 
-server.use(withRestity());
+withRestity(server);
 
-server.use(withApiObserver(router));
+withApiObserver(server, router);
 
 withNext(server, router);
 

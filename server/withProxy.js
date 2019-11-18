@@ -14,10 +14,10 @@ const proxyOptions = {
     }
 };
 
-module.exports = withProxy = (app) => {
+module.exports = withProxy = (server) => {
     const proxy = require('koa-proxies');
 
     Object.keys(proxyOptions).forEach(function (context) {
-        app.use(proxy(context, proxyOptions[context]))
+        server.use(proxy(context, proxyOptions[context]))
     });
 }

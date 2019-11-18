@@ -8,7 +8,7 @@
 */
 const path = require('path');
 
-module.exports = withConfig = (app) => {
+module.exports = withConfig = (server) => {
     const configPath = '../config/config.json';
-    app.hkConfig = require(path.resolve(__dirname, configPath)) || {};
-}
+    server.hkConfig = require(path.resolve(__dirname, configPath)) || {};
+};

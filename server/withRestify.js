@@ -13,12 +13,10 @@ function getNowFormatDate() {
     return date.getFullYear() + seperator1 + month + seperator1 + strDate
         + " " + date.getHours() + seperator2 + date.getMinutes()
         + seperator2 + date.getSeconds();
-}
+};
 
-module.exports = restify = (prefix = '/api/') => {
-    return async function( ctx, next ) {
-        ctx.state.contextPath = '/haokan-next';
-        // ctx.state.version = config.version;
+module.exports = withRestify = (app, prefix = '/api/') => {
+    app.use(async(ctx, next) => {
         ctx.state.nowDate = getNowFormatDate();
         if (ctx.request.path.includes(prefix)) {
             ctx.rest = data => {
@@ -36,5 +34,6 @@ module.exports = restify = (prefix = '/api/') => {
         } else {
             await next();
         }
-    };
+    });
 };
+
