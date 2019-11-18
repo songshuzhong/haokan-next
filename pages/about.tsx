@@ -14,6 +14,13 @@ export default class About extends React.Component<any, any> {
         };
     }
 
+    componentDidMount() {
+        fetch('/haokan-next/api/suggest')
+            .then(res => res.json())
+            .then(data => console.log('data:', data))
+            .catch(e => console.log('error', e.toString()));
+    }
+
     unique = () => {
         const array = this.state.array.sort((a, b) => a - b);
         let index = 0;
@@ -34,13 +41,13 @@ export default class About extends React.Component<any, any> {
     render() {
         return (
             <Layout title='about'>
-                <h1 onClick={() => this.props.store.increase()}>
+                <h3 onClick={() => this.props.store.increase()}>
                     click me to update the number.
-                </h1>
-                <h2>{this.props.store.lastUpdate}</h2>
-                <h1>{this.props.store.status}</h1>
+                </h3>
+                <h3>{this.props.store.lastUpdate}</h3>
+                <h3>{this.props.store.status}</h3>
                 <div>{JSON.stringify(this.props.store.results)}</div>
-                <h1>{this.state.array}</h1>
+                <h3>{this.state.array}</h3>
                 <a href='/haokan-next/author?app_id=1619184918983136'>link to author.</a>
             </Layout>
         );

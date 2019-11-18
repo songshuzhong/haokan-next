@@ -11,28 +11,23 @@ const Router = require('koa-router');
 const withNext = require('./withNext');
 const withProxy = require('./withProxy');
 const withConfig = require('./withConfig');
-
+const withRestity = require('./withRestify');
+const withApiObserver = require('./withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
 
 const server = new Koa();
-const router = new Router();
+const router = new Router({prefix: '/haokan-next'});
 
 if (dev) {
     // 配置接口代理
     withProxy(server);
 }
-
 // 配置koa全局参数
 withConfig(server);
 
-withNext(server, router);
+server.use(withRestity());
 
-server.use(async (ctx, next) => {
-    ctx.res.statusCode = 200;
-    await next();
-});
-
-server.use(router.routes());
+withNext(server, router, withApiObserver);
 
 const port = server.hkConfig.serverPort || 8080;
 

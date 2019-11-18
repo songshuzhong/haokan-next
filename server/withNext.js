@@ -15,11 +15,14 @@ const handle = ssr.getRequestHandler();
 
 mobxReact.useStaticRendering(true);
 
-module.exports = withNext = (app, router) => {
+module.exports = withNext = (server, router, withApiObserver) => {
     ssr.prepare().then(() => {
-        router.get('*', async (ctx) => {
+        server.use(withApiObserver(router));
+        router.all('*', async (ctx) => {
             let url = ctx.req.url;
-            url = url.replace(app.hkConfig.prefix, '');
+            if (!url.includes('/api/')) {
+                url = url.replace(server.hkConfig.prefix, '');
+            }
 
             await handle(ctx.req, ctx.res, parse(url, true))
         });
