@@ -27,7 +27,9 @@ withConfig(server);
 
 server.use(withRestity());
 
-withNext(server, router, withApiObserver);
+server.use(withApiObserver(router));
+
+withNext(server, router);
 
 const port = server.hkConfig.serverPort || 8080;
 

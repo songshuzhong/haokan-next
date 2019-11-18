@@ -15,9 +15,8 @@ const handle = ssr.getRequestHandler();
 
 mobxReact.useStaticRendering(true);
 
-module.exports = withNext = (server, router, withApiObserver) => {
+module.exports = withNext = (server, router) => {
     ssr.prepare().then(() => {
-        server.use(withApiObserver(router));
         router.all('*', async (ctx) => {
             let url = ctx.req.url;
             if (!url.includes('/api/')) {
