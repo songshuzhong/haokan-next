@@ -8,11 +8,11 @@
 */
 const Koa = require('koa');
 const Router = require('koa-router');
-const withNext = require('./withNext');
-const withProxy = require('./withProxy');
-const withConfig = require('./withConfig');
-const withRestity = require('./withRestify');
-const withApiObserver = require('./withApiObserver');
+const withNext = require('./plugins/withNext');
+const withProxy = require('./plugins/withProxy');
+const withConfig = require('./plugins/withConfig');
+const withRestity = require('./plugins/withRestify');
+const withApiObserver = require('./plugins/withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
 
 const server = new Koa();
