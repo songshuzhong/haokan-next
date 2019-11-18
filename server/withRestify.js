@@ -15,8 +15,8 @@ function getNowFormatDate() {
         + seperator2 + date.getSeconds();
 };
 
-module.exports = withRestify = (app, prefix = '/api/') => {
-    app.use(async(ctx, next) => {
+module.exports = withRestify = (server, prefix = '/api/') => {
+    server.use(async(ctx, next) => {
         ctx.state.nowDate = getNowFormatDate();
         if (ctx.request.path.includes(prefix)) {
             ctx.rest = data => {
