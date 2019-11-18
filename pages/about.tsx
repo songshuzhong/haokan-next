@@ -33,6 +33,7 @@ export default class About extends React.Component<any, any> {
             }
 
             array[index] = array[i];
+            console.log(array);
         }
 
         this.setState({array: array.slice(0, index + 1)});
