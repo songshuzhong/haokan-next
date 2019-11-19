@@ -10,6 +10,9 @@ import React from 'react';
 import App from 'next/app';
 import {Provider} from 'mobx-react';
 import withMobxStore from '../src/components/lib/with-mobx-app';
+import config from '../config/config.json';
+
+const dev = process.env.NODE_ENV !== 'production';
 
 class Application extends App<any, any> {
     static async getInitialProps(context) {
@@ -29,10 +32,11 @@ class Application extends App<any, any> {
 
     render() {
         const {Component, store, ...other} = this.props;
+        const contextPath = dev ? '/' : config.prefix;
 
         return (
             <Provider store={store}>
-                <Component {...other}/>
+                <Component {...other} contextPath={contextPath} />
             </Provider>
         );
     }
