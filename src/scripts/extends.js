@@ -1,8 +1,8 @@
 function Animal() {}
 function Dog() {}
-/*1.原型链继承*/
+/*1.原型链继承 属性私有*/
 Dog.prototype = new Animal();
-/*2.构造函数继承*/
+/*2.构造函数继承 继承原型对象的属性方法*/
 function Cat() {
     Animal.call(this);
 }

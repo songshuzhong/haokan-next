@@ -14,4 +14,4 @@ unique = () => {
     }
 
     return array.slice(0, index + 1);
-}
+};
