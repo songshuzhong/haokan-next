@@ -46,7 +46,7 @@ const generatorApi = (router, dir) => {
         .forEach((f) => generatorMapping(router, require(dir + '/' + f)));
 };
 
-module.exports = withApiObserver = (server, router, dir = './routers') => {
+module.exports = withApiObserver = (server, router, dir = '../routers') => {
     router.prefix(server.hkConfig.prefix);
 
     generatorApi(router, path.resolve(path.join(__dirname, dir)));
