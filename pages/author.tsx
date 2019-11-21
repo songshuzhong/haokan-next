@@ -124,7 +124,7 @@ export default class Author extends React.Component<any, any> {
     createMiniItems = ({content}, i) =>
         <div key={i} className='mini-item' style={{backgroundImage: `url(${content['poster_exquisite']})`}}>
             <div className='watch'>
-                <img src='/static/img/minivideo-eyes.png'/>
+                <img src={`${this.props.contextPath}/public/img/minivideo-eyes.png`}/>
                 <span>&nbsp;{content['playcnt']['playcntText']}</span>
             </div>
         </div>;
@@ -146,7 +146,7 @@ export default class Author extends React.Component<any, any> {
 
         return (
             <Layout title={author ? author.name : ''}>
-                <Header author={author}/>
+                <Header author={author} contextPath={this.props.contextPath}/>
                 <ul className='hk-tabs-wrapper'>
                     <li className={currentTab == 0 ? 'active' : ''} onClick={() => this.onTabsChange(0)}>
                         <span>视频</span>

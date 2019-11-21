@@ -9,7 +9,7 @@
 │   └── lib
 │       ├── header.tsx
 │       ├── layout.tsx
-│       └── with-mobx-app.tsx
+│       └── app-manager.tsx
 ├── deploy
 │   ├── build.sh
 │   ├── config.json

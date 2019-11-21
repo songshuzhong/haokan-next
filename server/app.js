@@ -10,8 +10,10 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const withNext = require('./plugins/withNext');
 const withProxy = require('./plugins/withProxy');
+const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
 const withRestity = require('./plugins/withRestify');
+const withStatic = require('./plugins/withStatic');
 const withApiObserver = require('./plugins/withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -22,8 +24,12 @@ if (dev) {
     // 配置接口代理
     withProxy(server);
 }
-// 配置koa全局参数
+
 withConfig(server);
+
+withStatic(server);
+
+withCache(server);
 
 withRestity(server);
 

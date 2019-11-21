@@ -21,7 +21,7 @@ function getOrCreateStore(Store) {
 }
 
 export default (App) => {
-    return class AppWithMobx extends React.Component {
+    return class AppManager extends React.Component {
         private store = {};
         static async getInitialProps (context) {
             let mobxStore = {};

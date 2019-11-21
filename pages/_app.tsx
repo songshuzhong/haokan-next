@@ -9,7 +9,8 @@
 import React from 'react';
 import App from 'next/app';
 import {Provider} from 'mobx-react';
-import withMobxStore from '../src/components/lib/with-mobx-app';
+import appManager from '../src/components/lib/app-manager';
+
 import config from '../config/config.json';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -34,12 +35,16 @@ class Application extends App<any, any> {
         const {Component, store, ...other} = this.props;
         const contextPath = dev ? '/' : config.prefix;
 
-        return (
-            <Provider store={store}>
-                <Component {...other} contextPath={contextPath} />
-            </Provider>
-        );
+        if (Component.name === 'Injector') {
+            return (
+                <Provider store={store}>
+                    <Component {...other} contextPath={contextPath} />
+                </Provider>
+            );
+        } else {
+            return <Component {...other} store={store} contextPath={contextPath} />;
+        }
     }
 }
 
-export default withMobxStore(Application);
+export default appManager(Application);
