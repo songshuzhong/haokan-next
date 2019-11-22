@@ -3,10 +3,13 @@ import {Layout} from '../src/components/lib/layout';
 
 import '../src/styles/flex.less';
 
-const useDidMount = fn => useEffect(fn, []);
+const Flex = props => {
 
-const Flex = () => {
-    useDidMount(() => console.log('did mount'));
+    useEffect(() => {
+        fetch(`${props.contextPath}/api/forceCached`)
+            .then(res => res.json())
+            .then(data => console.log(data));
+    }, []);
 
     return (
         <Layout>

@@ -1,4 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
+
 import {Layout} from '../src/components/lib/layout';
 
 const useSetPosition = initial => {
@@ -24,12 +25,12 @@ const Cat = props => {
     );
 };
 
-export default class RenderProps extends React.Component<any, any> {
-    render() {
-        return (
-            <Layout>
-                <Mouse render={position => <Cat {...position} />}/>
-            </Layout>
-        );
-    }
-}
+const RenderProps = () =>  {
+    return (
+        <Layout>
+            <Mouse render={position => <Cat {...position} />}/>
+        </Layout>
+    );
+};
+
+export default RenderProps;

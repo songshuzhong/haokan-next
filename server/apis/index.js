@@ -17,10 +17,10 @@ module.exports = {
         };
         try {
             const results = await launchLighthouse(ctx.params.url, options) || {};
-            ctx.rest({results});
+            ctx.restify({results});
 
         } catch (e) {
-            ctx.body = e;
+            ctx.cautify(e.message);
         }
     }
 };

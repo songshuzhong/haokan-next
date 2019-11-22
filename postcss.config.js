@@ -15,5 +15,5 @@ module.exports = () => {
             }
         })
     ];
-    return { plugins };
+    return {plugins};
 };

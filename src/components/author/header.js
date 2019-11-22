@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 
-const Header = ({author}) => <Fragment>
+const Header = ({author, contextPath}) => <Fragment>
     <div className='hk-header-wrapper'>
         <div className='profile'>
             <img className='photo' src={author.avatar} />
             {
                 author.vip && author.vip > 0 && author.vip < 4
-                    ? <img className='fork' src={`/static/img/icon-v-${author.vip}.png`} />
+                    ? <img className='fork' src={`${contextPath}/static/img/icon-v-${author.vip}.png`} />
                     : ''
             }
             <div className='nick'>{author.name}</div>
@@ -14,7 +14,7 @@ const Header = ({author}) => <Fragment>
                 {author.is_subscribe ?
                     '已关注' :
                     <Fragment>
-                        <img src='/static/img/icon-plus.png' />&nbsp;关注
+                        <img src={`${contextPath}/static/img/icon-plus.png`} />&nbsp;关注
                     </Fragment>
                 }
             </div>
@@ -23,7 +23,7 @@ const Header = ({author}) => <Fragment>
             {
                 author.baidu_authentication ?
                     <div>
-                        <img src='/static/img/certification.png' />
+                        <img src={`${contextPath}/static/img/certification.png`} />
                         <span>
                                     {
                                         author.baidu_authentication.length > 25
@@ -36,7 +36,7 @@ const Header = ({author}) => <Fragment>
             {
                 author.wishes ?
                     <div>
-                        <img src='/static/img/author.png' />
+                        <img src={`${contextPath}/static/img/author.png`} />
                         <span>{author.wishes}</span>
                     </div> : null
             }
