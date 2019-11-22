@@ -12,8 +12,8 @@ const withNext = require('./plugins/withNext');
 const withProxy = require('./plugins/withProxy');
 const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
-const withRestity = require('./plugins/withRestify');
 const withStatic = require('./plugins/withStatic');
+const withRestify = require('./plugins/withRestify');
 const withApiObserver = require('./plugins/withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -31,7 +31,7 @@ withStatic(server);
 
 withCache(server);
 
-withRestity(server);
+withRestify(server);
 
 withApiObserver(server, router);
 

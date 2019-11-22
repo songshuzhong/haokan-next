@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Layout} from '../src/components/lib/layout';
-
 import JSONP from '../src/scripts/jsonp';
 
 const useInputChange = initial => {

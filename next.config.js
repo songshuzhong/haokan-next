@@ -3,6 +3,7 @@ const withLess = require('@zeit/next-less');
 const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const config = require('./config/config');
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -11,8 +12,20 @@ if (typeof require !== 'undefined') {
     require.extensions['.less'] = () => {};
 }
 
-module.exports = withLess(
+module.exports = withBundleAnalyzer(withLess(
     {
+        analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+        analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+        bundleAnalyzerConfig: {
+            server: {
+                analyzerMode: 'static',
+                reportFilename: './server.html',
+            },
+            browser: {
+                analyzerMode: 'static',
+                reportFilename: './client.html',
+            },
+        },
         webpack(config, {buildld, dev, isServer, defaultLoaders}) {
             config.resolve.alias.components = path.join(__dirname, './src/components');
             config.resolve.alias.components = path.join(__dirname, './src/styles');
@@ -54,6 +67,7 @@ module.exports = withLess(
                     })
                 ]
             };
+
             return config;
         },
         lessLoaderOptions: {
@@ -64,4 +78,4 @@ module.exports = withLess(
         distDir: 'build',
         assetPrefix: dev ? '/' : config.prefix
     }
-);
+));
