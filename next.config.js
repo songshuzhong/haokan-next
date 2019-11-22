@@ -3,6 +3,7 @@ const withLess = require('@zeit/next-less');
 const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const config = require('./config/config');
 const dev = process.env.NODE_ENV !== 'production';
 
 if (typeof require !== 'undefined') {
@@ -61,6 +62,6 @@ module.exports = withLess(
             localIdentName: '[local]___[hash:base64:5]'
         },
         distDir: 'build',
-        assetPrefix: dev ? '/' : '/haokan-next'
+        assetPrefix: dev ? '/' : config.prefix
     }
 );
