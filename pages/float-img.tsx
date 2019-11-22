@@ -29,4 +29,6 @@ FloatImg.getInitialProps = async() => {
     return {
         list: data
     };
-}
+};
+
+export default FloatImg;

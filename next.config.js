@@ -27,6 +27,20 @@ module.exports = withBundleAnalyzer(withLess(
             },
         },
         webpack(config, {buildld, dev, isServer, defaultLoaders}) {
+            config.entry.vendors = ['react', 'react-dom', 'react-loadable', 'react-router', 'react-router-dom'];
+            config.optimization.splitChunks = {
+                cacheGroups: {
+                    vendors: {
+                        name: 'commons',
+                        chunks: 'all',
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: 10
+                    },
+                    runtimeChunk: {
+                        name: "runtime"
+                    }
+                }
+            };
             config.resolve.alias.components = path.join(__dirname, './src/components');
             config.resolve.alias.components = path.join(__dirname, './src/styles');
             config.resolve.alias.components = path.join(__dirname, './src/stores');
