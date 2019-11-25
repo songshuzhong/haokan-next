@@ -35,7 +35,7 @@ const Hooks = () => {
     const [fetchList, setFetchList] = useState([]);
 
     useWillMount(() => console.log('will mount'));
-    useDidMount(() => console.log('did mount'));
+    useDidMount(() => {console.log('did mount');});
     useDidUpdate(() => console.log('did update'));
 
     useEffect(() => {

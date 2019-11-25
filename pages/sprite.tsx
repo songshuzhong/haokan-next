@@ -14,7 +14,7 @@ import {Layout} from '../src/components/lib/layout';
 import '../src/styles/sprite.less';
 
 const Author = (props) => {
-    const {author} = props.store;
+    const {author} = props.pageProps;
 
     return (
         <Layout title={author ? author.name : ''}>

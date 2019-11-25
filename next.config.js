@@ -4,6 +4,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
+const LessFunc = require('less-plugin-functions');
 const config = require('./config/config');
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -87,7 +88,8 @@ module.exports = withBundleAnalyzer(withLess(
         lessLoaderOptions: {
             javascriptEnabled: true,
             importLoaders: 1,
-            localIdentName: '[local]___[hash:base64:5]'
+            localIdentName: '[local]___[hash:base64:5]',
+            plugins: [new LessFunc()]
         },
         distDir: 'build',
         assetPrefix: dev ? '/' : config.prefix

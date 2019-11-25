@@ -7,7 +7,7 @@ const FloatImg = props => {
     return (
         <div className='gallery'>
             {
-                props.store.list.map((item, index) => {
+                props.pageProps.list.map((item, index) => {
                     return (
                         <div className='image-item' key={index}>
                             <img src={item.middleURL} />

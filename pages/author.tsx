@@ -91,7 +91,7 @@ const createAlbumItems = ({content}, i) =>
     </div>;
 
 const Author = props => {
-    const {author, videoList, videoMiniList, videoAlbum} = props.store;
+    const {author, videoList, videoMiniList, videoAlbum} = props.pageProps;
     const [currentTab, onTabsChange] = useState(0);
 
     useEffect(() => {
