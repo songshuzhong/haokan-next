@@ -1,0 +1,5 @@
+{
+  "prefix": "/haokan-next",
+  "NODE_ENV": "production",
+  "PORT": "8080"
+}

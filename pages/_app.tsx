@@ -6,10 +6,9 @@
  *@desc
  *@link
  */
-import React from 'react';
 import App from 'next/app';
 import {Provider} from 'mobx-react';
-import config from '../config/config.json';
+import config from '../config/setting.json';
 
 const dev = process.env.NODE_ENV !== 'production';
 const isServer = typeof window === 'undefined';
@@ -27,7 +26,6 @@ function getOrCreateStore(Store) {
 
 class Application extends App<any, any> {
     private store = {};
-    // private fundebug = null;
     static async getInitialProps(context) {
         const {Component} = context;
         let initialProps = {};
@@ -56,24 +54,7 @@ class Application extends App<any, any> {
         }
     }
 
-    componentDidMount() {
-        if (!isServer) {
-            /*import('fundebug-javascript').then(fundebug => {
-                this.fundebug = fundebug;
-                // @ts-ignore
-                fundebug.apikey = '095b2b18503d9b9f2133b01633508fb235b2b02ecf206dbcc4e49ee97a02a85a';
-            });*/
-        }
-    }
-
     componentDidCatch(error, errorInfo) {
-        if (!isServer) {
-            /*this.fundebug.notifyError(error, {
-                metaData: {
-                    info: errorInfo
-                }
-            });*/
-        }
         super.componentDidCatch(error, errorInfo);
     }
 

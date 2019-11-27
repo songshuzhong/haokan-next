@@ -76,6 +76,3 @@ Thumbs.db
 /dist
 /dll
 /build
-
-# local config
-config.json
