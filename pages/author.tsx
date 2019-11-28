@@ -73,7 +73,7 @@ const createItems = ({content}, i) =>
 const createMiniItems = ({content}, i) =>
     <div key={i} className='mini-item' style={{backgroundImage: `url(${content['poster_exquisite']})`}}>
         <div className='watch'>
-            <img src={`${this.props.contextPath}/public/img/minivideo-eyes.png`}/>
+            <img src={`${this.props.contextPath}/static/img/minivideo-eyes.png`}/>
             <span>&nbsp;{content['playcnt']['playcntText']}</span>
         </div>
     </div>;

@@ -47,7 +47,7 @@ const generatorApi = (router, dir) => {
 };
 
 module.exports = withApiObserver = (server, router, dir = '../apis') => {
-    router.prefix(server.hkConfig.prefix);
+    // router.prefix(server.hkConfig.prefix);
 
     generatorApi(router, path.resolve(path.join(__dirname, dir)));
 
