@@ -6,7 +6,7 @@ const path = require('path');
  * @param router
  * @param mappers
  */
-const generatorMapping = (router, mappers) => {
+const generatorMapping = (apiPrefix, router, mappers) => {
     for (let mapper in mappers) {
         let key;
 
@@ -18,16 +18,16 @@ const generatorMapping = (router, mappers) => {
 
         switch (key[0].toLowerCase()) {
             case 'get':
-                router.get(key[1], mappers[mapper]);
+                router.get(apiPrefix + key[1], mappers[mapper]);
                 break;
             case 'put':
-                router.put(key[1], mappers[mapper]);
+                router.put(apiPrefix + key[1], mappers[mapper]);
                 break;
             case 'post':
-                router.post(key[1], mappers[mapper]);
+                router.post(apiPrefix + key[1], mappers[mapper]);
                 break;
             case 'delete':
-                router.del(key[1], mappers[mapper]);
+                router.del(apiPrefix + key[1], mappers[mapper]);
                 break;
             default:
                 console.log('invalid url: ' + mapper);
@@ -40,16 +40,17 @@ const generatorMapping = (router, mappers) => {
  * @param router
  * @param dir
  */
-const generatorApi = (router, dir) => {
+const generatorApi = (apiPrefix, router, dir) => {
     fs.readdirSync(dir)
         .filter((f) => f.endsWith('.js'))
-        .forEach((f) => generatorMapping(router, require(dir + '/' + f)));
+        .forEach((f) => generatorMapping(apiPrefix, router, require(dir + '/' + f)));
 };
 
 module.exports = withApiObserver = (server, router, dir = '../apis') => {
-    // router.prefix(server.hkConfig.prefix);
+    const {basename, version} = server.setting;
+    router.prefix(basename);
 
-    generatorApi(router, path.resolve(path.join(__dirname, dir)));
+    generatorApi(version + '/api', router, path.resolve(path.join(__dirname, dir)));
 
     server.use(router.routes());
 };

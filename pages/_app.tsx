@@ -8,8 +8,7 @@
  */
 import App from 'next/app';
 import {Provider} from 'mobx-react';
-import config from '../config/setting.json';
-
+import setting from '../config/setting.json';
 const dev = process.env.NODE_ENV !== 'production';
 const isServer = typeof window === 'undefined';
 const __NEXT_MOBX_STORE__ = '__NEXT_MOBX_STORE__';
@@ -40,9 +39,15 @@ class Application extends App<any, any> {
             initialProps = await Component.getInitialProps.call(Component, context);
         }
 
+        const basename = dev ? '' : setting.basename;
+        const version = dev ? '' : setting.version;
+        const apiPrefix = basename + version + '/api';
+
         Object.assign(pageProps, mobxStore, initialProps);
 
         return {
+            basename,
+            apiPrefix,
             pageProps
         };
     }
@@ -60,18 +65,17 @@ class Application extends App<any, any> {
 
     render() {
         const {Component, ...other} = this.props;
-        const contextPath = dev ? '/' : config.prefix;
 
         Object.assign(this.store, other);
 
         if (Component.name === 'Injector') {
             return (
                 <Provider store={this.store}>
-                    <Component {...other} contextPath={contextPath} />
+                    <Component {...other} />
                 </Provider>
             );
         } else {
-            return <Component {...this.store} contextPath={contextPath} />;
+            return <Component {...this.store} />;
         }
     }
 }

@@ -13,28 +13,32 @@ module.exports = withBundleAnalyzer(withLess(
         },
         webpack: (config) => {
             config.optimization.splitChunks.cacheGroups = {
-                mobx: {
-                    name: 'mobx',
-                    test: module => /mobx/.test(module.context),
-                    chunks: 'initial',
-                    priority: 10
+                react: {
+                    name: 'react',
+                    test: module => /react|prop-types/.test(module.context),
+                    chunks: 'all',
+                    priority: 20,
+                    enforce: true
                 },
-                nextjs: {
-                    name: 'nextjs',
-                    test: module => /nextjs/.test(module.context),
-                    chunks: 'initial',
-                    priority: 10
+                next: {
+                    name: 'next',
+                    test: /[\\/]node_modules[\\/](next)[\\/]/,
+                    chunks: 'all',
+                    priority: 20,
+                    enforce: true
                 },
                 common: {
                     name: 'common',
-                    chunks: 'initial',
-                    priority: 10,
-                    minChunks: 2
+                    test: module => /@babel|url|scheduler|debug|process|core-js|regenerator-runtime/.test(module.context),
+                    chunks: 'all',
+                    priority: 20,
+                    enforce: true
                 },
                 styles: {
                     name: 'styles',
                     test: /\.(css|less)$/,
                     chunks: 'async',
+                    priority: 20,
                     enforce: true
                 }
             };
@@ -42,6 +46,6 @@ module.exports = withBundleAnalyzer(withLess(
             return config
         },
         distDir: 'build',
-        assetPrefix: dev ? '/' : '/haokan-next'
+        assetPrefix: dev ? '' : '/haokan-next'
     }
 ));

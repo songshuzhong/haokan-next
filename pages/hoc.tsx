@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {Layout} from '../src/components/lib/layout';
 
-const hoc = IForm => () => {
+const hoc = IForm => props => {
     const [formData, setFormData] = useState({});
 
     const onChange = key => e => {
@@ -20,16 +20,28 @@ const hoc = IForm => () => {
     };
 
     const onSubmit = () => {
-        console.log(formData);
+        return {
+            onClick: () => {
+                fetch(`${props.apiPrefix}/sendBeacon`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.log(error.toString()));
+            }
+        };
     };
 
-    const props = {
+    const state = {
+        ...props,
         formData,
         onSubmit,
         getFields
     };
 
-    return <IForm {...props} />;
+    return <IForm {...state} />;
 };
 
 const Form = props => {
@@ -47,7 +59,7 @@ const Form = props => {
                 <label>密码：</label>
                 <input className='form-control' placeholder='请输入密码' {...props.getFields('password')} />
             </div>
-            <button className='btn btn-default' onClick={props.onSubmit}>提交</button>
+            <button className='btn btn-default' {...props.onSubmit()}>提交</button>
         </Layout>
     );
 };

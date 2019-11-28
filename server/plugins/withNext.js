@@ -20,7 +20,7 @@ module.exports = withNext = (server, router) => {
         router.all('*', async (ctx) => {
             let url = ctx.req.url;
             if (!url.includes('/api/')) {
-                url = url.replace(server.hkConfig.prefix, '');
+                url = url.replace(server.setting.basename, '');
             }
 
             await handle(ctx.req, ctx.res, parse(url, true))

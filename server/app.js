@@ -3,13 +3,12 @@
  *@Date 2019/07/01
  *@author sshuzhong
  *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
- *@desc
- *@link
   */
 const Koa = require('koa');
 const Router = require('koa-router');
 const withNext = require('./plugins/withNext');
 const withProxy = require('./plugins/withProxy');
+const withParser = require('./plugins/withParser');
 const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
 const withStatic = require('./plugins/withStatic');
@@ -27,6 +26,8 @@ if (dev) {
 
 withConfig(server);
 
+withParser(server);
+
 withStatic(server);
 
 withCache(server);
@@ -37,7 +38,7 @@ withApiObserver(server, router);
 
 withNext(server, router);
 
-const port = server.hkConfig.serverPort || 8080;
+const port = server.setting.port;
 
 server.listen(port, (err) => {
     if (err) throw err;

@@ -1,5 +1,5 @@
 module.exports = {
-    'Get /api/forceCached': async ctx => {
+    'Get /forceCached': async ctx => {
         try {
             const data = await new Promise((resolve, reject) => {
                 const timer = setTimeout(() => {

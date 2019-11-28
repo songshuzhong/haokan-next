@@ -73,7 +73,7 @@ const createItems = ({content}, i) =>
 const createMiniItems = ({content}, i) =>
     <div key={i} className='mini-item' style={{backgroundImage: `url(${content['poster_exquisite']})`}}>
         <div className='watch'>
-            <img src={`${this.props.contextPath}/static/img/minivideo-eyes.png`}/>
+            <img src={`${this.props.basename}/static/img/minivideo-eyes.png`}/>
             <span>&nbsp;{content['playcnt']['playcntText']}</span>
         </div>
     </div>;
@@ -100,7 +100,7 @@ const Author = props => {
 
     return (
         <Layout title={author ? author.name : ''}>
-            <Header author={author} contextPath={props.contextPath}/>
+            <Header author={author} basename={props.basename}/>
             <ul className='hk-tabs-wrapper'>
                 <li className={currentTab == 0 ? 'active' : ''} onClick={() => onTabsChange(0)}>
                     <span>视频</span>

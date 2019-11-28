@@ -6,9 +6,14 @@ import '../src/styles/flex.less';
 const Flex = props => {
 
     useEffect(() => {
-        fetch(`${props.contextPath}/api/forceCached`)
+        fetch(`${props.apiPrefix}/forceCached`)
             .then(res => res.json())
             .then(data => console.log(data));
+        window.onunload = function() {
+            const formData = new FormData();
+            formData.append('key', '页面关闭了');
+            navigator.sendBeacon(`${props.apiPrefix}/sendBeacon`, formData);
+        };
     }, []);
 
     return (
@@ -23,7 +28,9 @@ const Flex = props => {
             <div id='bfc'>
                 <div className='box'>box</div>
                 <div className='wrap'>
-                    <h1>h1</h1>
+                    <h1>
+                        <a href={`${props.basename}/margin`}>link to margin.</a>
+                    </h1>
                 </div>
             </div>
         </Layout>

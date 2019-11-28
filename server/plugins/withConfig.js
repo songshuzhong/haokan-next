@@ -10,5 +10,5 @@ const path = require('path');
 
 module.exports = withConfig = (server) => {
     const configPath = '../../config/setting.json';
-    server.hkConfig = require(path.resolve(__dirname, configPath)) || {};
+    server.setting = require(path.resolve(__dirname, configPath)) || {};
 };

@@ -11,7 +11,7 @@ const launchLighthouse = (url, opts, config = null) => {
 };
 
 module.exports = {
-    'GET /api/suggest/:url': async(ctx) => {
+    'GET /suggest/:url': async(ctx) => {
         const options = {
             chromeFlags: ['--headless']
         };
@@ -21,6 +21,14 @@ module.exports = {
 
         } catch (e) {
             ctx.cautify(e.message);
+        }
+    },
+    'POST /sendBeacon': async ctx => {
+        try {
+            console.log(ctx.request.body);
+            ctx.restify({status: 0, message: '数据已经接受并入库！！！！'});
+        } catch (e) {
+            ctx.cautify({status: 0, message: e.message});
         }
     }
 };
