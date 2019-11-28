@@ -13,28 +13,36 @@ module.exports = withBundleAnalyzer(withLess(
         },
         webpack: (config) => {
             config.optimization.splitChunks.cacheGroups = {
-                mobx: {
-                    name: 'mobx',
-                    test: module => /mobx/.test(module.context),
-                    chunks: 'initial',
-                    priority: 10
+                react: {
+                    name: 'react',
+                    test: module => /react|prop-types/.test(module.context),
+                    chunks: 'all',
+                    priority: 20
                 },
-                nextjs: {
-                    name: 'nextjs',
-                    test: module => /nextjs/.test(module.context),
+                next: {
+                    name: 'next',
+                    test: /[\\/]node_modules[\\/](next)[\\/]/,
                     chunks: 'initial',
                     priority: 10
                 },
                 common: {
                     name: 'common',
-                    chunks: 'initial',
+                    test: /[\\/]node_modules[\\/](@babel|url|scheduler|debug|process|core-js|regenerator-runtime)[\\/]/,
+                    chunks: 'all',
+                    priority: 20,
+                    minChunks: 1
+                },
+                default: {
+                    test: /[\\/]node_modules[\\/](ms)[\\/]/,
+                    chunks: 'all',
                     priority: 10,
-                    minChunks: 2
+                    reuseExistingChunk: true
                 },
                 styles: {
                     name: 'styles',
                     test: /\.(css|less)$/,
                     chunks: 'async',
+                    priority: 20,
                     enforce: true
                 }
             };
@@ -42,6 +50,6 @@ module.exports = withBundleAnalyzer(withLess(
             return config
         },
         distDir: 'build',
-        assetPrefix: dev ? '/' : '/haokan-next'
+        assetPrefix: dev ? '' : '/haokan-next'
     }
 ));

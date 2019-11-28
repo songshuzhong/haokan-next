@@ -60,7 +60,7 @@ class Application extends App<any, any> {
 
     render() {
         const {Component, ...other} = this.props;
-        const contextPath = dev ? '/' : config.prefix;
+        const contextPath = dev ? '' : config.prefix;
 
         Object.assign(this.store, other);
 

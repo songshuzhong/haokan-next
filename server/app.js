@@ -10,6 +10,7 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const withNext = require('./plugins/withNext');
 const withProxy = require('./plugins/withProxy');
+const withParser = require('./plugins/withParser');
 const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
 const withStatic = require('./plugins/withStatic');
@@ -26,6 +27,8 @@ if (dev) {
 }
 
 withConfig(server);
+
+withParser(server);
 
 withStatic(server);
 

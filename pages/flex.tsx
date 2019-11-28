@@ -9,6 +9,11 @@ const Flex = props => {
         fetch(`${props.contextPath}/api/forceCached`)
             .then(res => res.json())
             .then(data => console.log(data));
+        window.onunload = function() {
+            const formData = new FormData();
+            formData.append('key', '页面关闭了');
+            navigator.sendBeacon(`${props.contextPath}/api/sendBeacon`, formData);
+        };
     }, []);
 
     return (
@@ -23,7 +28,9 @@ const Flex = props => {
             <div id='bfc'>
                 <div className='box'>box</div>
                 <div className='wrap'>
-                    <h1>h1</h1>
+                    <h1>
+                        <a href={`${props.contextPath}/margin`}>link to margin.</a>
+                    </h1>
                 </div>
             </div>
         </Layout>

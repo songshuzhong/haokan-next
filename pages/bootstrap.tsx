@@ -1,11 +1,13 @@
-import React from 'react';
+import Link from 'next/link'
 import '../src/styles/bootstrap.less';
 
 const Bootstrap = () => {
     return (
         <div className='container'>
             <div className='row'>
-                <div className='col-md-12'>12</div>
+                <div className='col-md-12'>
+                    <Link href='/margin'>margin</Link>
+                </div>
             </div>
             <div className='row'>
                 <div className='col-md-6'>6</div>

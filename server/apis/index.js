@@ -22,5 +22,13 @@ module.exports = {
         } catch (e) {
             ctx.cautify(e.message);
         }
+    },
+    'POST /api/sendBeacon': async ctx => {
+        try {
+            console.log(ctx.request.body);
+            ctx.restify({status: 0, message: '数据已经接受并入库！！！！'});
+        } catch (e) {
+            ctx.cautify({status: 0, message: e.message});
+        }
     }
 };
