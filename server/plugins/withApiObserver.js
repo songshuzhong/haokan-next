@@ -3,6 +3,7 @@ const path = require('path');
 
 /**
  *
+ * @param apiPrefix
  * @param router
  * @param mappers
  */
@@ -37,6 +38,7 @@ const generatorMapping = (apiPrefix, router, mappers) => {
 
 /**
  *
+ * @param apiPrefix
  * @param router
  * @param dir
  */

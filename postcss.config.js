@@ -1,6 +1,12 @@
+const dev = process.env.NODE_ENV !== 'production';
+
 module.exports = () => {
     return {
         plugins: [
+            require('./src/utils/less-prefix-url')({
+                prefix: '/haokan-next',
+                useUrl: !dev
+            }),
             require('autoprefixer')({
                 browsers: [
                     '> 1%',

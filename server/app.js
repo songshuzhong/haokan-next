@@ -11,7 +11,6 @@ const withProxy = require('./plugins/withProxy');
 const withParser = require('./plugins/withParser');
 const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
-const withStatic = require('./plugins/withStatic');
 const withRestify = require('./plugins/withRestify');
 const withApiObserver = require('./plugins/withApiObserver');
 const dev = process.env.NODE_ENV !== 'production';
@@ -27,8 +26,6 @@ if (dev) {
 withConfig(server);
 
 withParser(server);
-
-withStatic(server);
 
 withCache(server);
 
