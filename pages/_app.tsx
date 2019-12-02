@@ -29,7 +29,11 @@ class Application extends App<any, any> {
         const {Component} = context;
         let initialProps = {};
         let mobxStore = {};
-        let pageProps = {};
+        let pageProps = {
+            basename: dev ? '' : setting.basename,
+            version: dev ? '' : setting.version,
+            apiPrefix:  dev ? '/api' : setting.basename + setting.version + '/api'
+        };
 
         if (context.Component.Store) {
             mobxStore = new context.Component.Store();
@@ -39,15 +43,9 @@ class Application extends App<any, any> {
             initialProps = await Component.getInitialProps.call(Component, context);
         }
 
-        const basename = dev ? '' : setting.basename;
-        const version = dev ? '' : setting.version;
-        const apiPrefix = basename + version + '/api';
-
         Object.assign(pageProps, mobxStore, initialProps);
 
         return {
-            basename,
-            apiPrefix,
             pageProps
         };
     }

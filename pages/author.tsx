@@ -15,6 +15,7 @@ import {Image} from '../src/components/author/image';
 
 import '../src/styles/author.less';
 
+// @ts-ignore
 function onScrollListen() {
     const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -26,6 +27,7 @@ function onScrollListen() {
     }
 }
 
+// @ts-ignore
 const debounce = (fn, wait) => {
     wait = wait || 0;
     let timerId;
@@ -91,16 +93,31 @@ const createAlbumItems = ({content}, i) =>
     </div>;
 
 const Author = props => {
-    const {author, videoList, videoMiniList, videoAlbum} = props.pageProps;
+    const {author, videoMiniList, videoAlbum} = props.pageProps;
     const [currentTab, onTabsChange] = useState(0);
+    const [videoList, setVideoList] = useState(props.pageProps.videoList);
+    const [skip, setSkip] = useState(1);
 
     useEffect(() => {
-        window.onscroll = debounce(onScrollListen.bind(this), 100);
+        window.onscroll = () => {
+            const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const isBottom = (scrollTop + clientHeight >= scrollHeight - 50);
+
+            if (isBottom) {
+                fetch(`${props.pageProps.apiPrefix}/author/${props.router.query.app_id}/${skip}`)
+                    .then(res => res.json())
+                    .then(data => setVideoList([...videoList, ...data.video.results]))
+                    .catch(error => console.log(error.toString()));
+                setSkip(skip + 1);
+            }
+        };
     }, []);
 
     return (
         <Layout title={author ? author.name : ''}>
-            <Header author={author} basename={props.basename}/>
+            <Header author={author} basename={props.pageProps.basename}/>
             <ul className='hk-tabs-wrapper'>
                 <li className={currentTab == 0 ? 'active' : ''} onClick={() => onTabsChange(0)}>
                     <span>视频</span>

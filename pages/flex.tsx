@@ -6,13 +6,13 @@ import '../src/styles/flex.less';
 const Flex = props => {
 
     useEffect(() => {
-        fetch(`${props.apiPrefix}/forceCached`)
+        fetch(`${props.pageProps.apiPrefix}/forceCached`)
             .then(res => res.json())
             .then(data => console.log(data));
         window.onunload = function() {
             const formData = new FormData();
             formData.append('key', '页面关闭了');
-            navigator.sendBeacon(`${props.apiPrefix}/sendBeacon`, formData);
+            navigator.sendBeacon(`${props.pageProps.apiPrefix}/sendBeacon`, formData);
         };
     }, []);
 
@@ -29,7 +29,7 @@ const Flex = props => {
                 <div className='box'>box</div>
                 <div className='wrap'>
                     <h1>
-                        <a href={`${props.basename}/margin`}>link to margin.</a>
+                        <a href={`${props.pageProps.basename}/margin`}>link to margin.</a>
                     </h1>
                 </div>
             </div>

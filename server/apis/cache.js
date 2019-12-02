@@ -15,9 +15,9 @@ module.exports = {
             ctx.cautify(e.message);
         }
     },
-    'GET /author/:app_id': async ctx => {
+    'GET /author/:app_id/:skip': async ctx => {
         try {
-            const res = await fetch(`https://haokan.baidu.com/haokan/wiseauthor?app_id=${ctx.params.url}&_format=json`);
+            const res = await fetch(`https://haokan.baidu.com/haokan/wiseauthor?app_id=${ctx.params.url}&_api=1&_skip=${ctx.params.skip}&ctime=15739660327677&_limit=10&video_type=media&sort_type=sort_by_time`);
             const {apiData} = await res.json();
             ctx.restify(apiData);
         } catch (e) {

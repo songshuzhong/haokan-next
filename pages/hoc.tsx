@@ -22,7 +22,7 @@ const hoc = IForm => props => {
     const onSubmit = () => {
         return {
             onClick: () => {
-                fetch(`${props.apiPrefix}/sendBeacon`, {
+                fetch(`${props.pageProps.apiPrefix}/sendBeacon`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(formData)

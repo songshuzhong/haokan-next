@@ -13,7 +13,6 @@ const withCache = require('./plugins/withCache');
 const withConfig = require('./plugins/withConfig');
 const withRestify = require('./plugins/withRestify');
 const withApiObserver = require('./plugins/withApiObserver');
-
 const dev = process.env.NODE_ENV !== 'production';
 const server = new Koa();
 const router = new Router();
@@ -24,15 +23,10 @@ if (dev) {
 }
 
 withConfig(server);
-
 withParser(server);
-
 withCache(server);
-
 withRestify(server);
-
 withApiObserver(server, router);
-
 withNext(server, router);
 
 const port = server.setting.port;
