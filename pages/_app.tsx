@@ -57,6 +57,7 @@ class Application extends App<any, any> {
         if (props.Component.Store) {
             this.store = getOrCreateStore(props.Component.Store);
         }
+        this.state = this.props.pageProps;
     }
 
     componentDidCatch(error, errorInfo) {
