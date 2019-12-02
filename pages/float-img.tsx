@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
+import {ProgressiveImage} from '../src/components/author/progressive';
 
 import '../src/styles/float-img.less';
 
@@ -10,8 +11,10 @@ const FloatImg = props => {
                 props.pageProps.list.map((item, index) => {
                     return (
                         <div className='image-item' key={index}>
-                            <img src={item.middleURL} />
-                            <div className="desc" dangerouslySetInnerHTML={{__html: item.fromPageTitle}}>
+                            <ProgressiveImage src={item.middleURL} placeholder='tiny-image.jpg'>
+                                {url => <img src={url} alt='an image' />}
+                            </ProgressiveImage>
+                            <div className='desc' dangerouslySetInnerHTML={{__html: item.fromPageTitle}}>
                             </div>
                         </div>
                     );
