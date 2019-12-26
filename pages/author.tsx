@@ -48,11 +48,7 @@ const debounce = (fn, wait) => {
 
 const createItems = ({content}, i) =>
     <div className='hk-video-wrapper' key={i}>
-        <div className='title'>
-            {
-                content['title']
-            }
-        </div>
+        <div className='title'>{content['title']}</div>
         <Image className='video' src={content['cover_src']}/>
         <div className='duration'>
             <span>{content['duration']}</span>
