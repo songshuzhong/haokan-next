@@ -2,7 +2,7 @@
  *@file
  *@Date 2019/07/01
  *@author sshuzhong
- *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@mailTo <a href="mailto:sshuzhong@outlook.com.cn">Song ShuZhong</a>
  *@desc
  *@link
 */
