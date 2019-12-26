@@ -154,6 +154,6 @@ Author.getInitialProps = async context => {
         videoList: apiData['video']['results'],
         videoListHasMore: apiData['video']['has_more']
     };
-}
+};
 
 export default Author;
